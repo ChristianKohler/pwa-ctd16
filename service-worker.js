@@ -14,11 +14,9 @@ self.addEventListener('fetch', function(event) {
                 console.log('Fetching: Unable to find in cache '+event.request.url);
                 return fetch(event.request);
             }
-            return response || event.default();
+            //return response || event.default();
         }).catch(function(e) {
-            console.error(e);
-            console.log('Fetching: Request failed');
-			return event.default();
+            console.log('Fetching: Request failed '+event.request.url);
         })
     );
 });
