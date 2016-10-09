@@ -2,75 +2,90 @@
 <html>
 
 <head>
-  <title>Bistro App</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, maximum-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  
-  <link rel="stylesheet" href="styles/bootstrap.css">
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/vendor.css">
+	<title>Bistro App</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<link rel="stylesheet" href="styles/bootstrap.css">
+	<link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/vendor.css">
+	<link rel="manifest" href="/manifest.json"/>
+	
+	<link rel="icon" href="img/favicon.png">
 </head>
 
 <body>
-  <script src="lib/jquery.js"></script>
-  <script src="lib/bootstrap.js"></script>
+	<script src="lib/jquery.js"></script>
+	<script src="lib/bootstrap.js"></script>
+	<script type="application/javascript">
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('service-worker.js', {
+				scope: '/'
+			}).then(function(sw) {
+				console.log("Successfully registered service worker");
+			}).catch(function() {
+				console.log("Registration of service worker failed");
+			});
+		}
+	</script>
   
-  <div class=row>
-	<div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10">
-		<div class=padding-md>
-			<div class=row>
-				<a href="https://christiankohler.github.io/pwa-ctd16/" class=hidden-xs style="position: absolute; right: 35px;">
-					<img src=img/logo.png style="margin: 15px;">
-				</a>
-				<h1 align=center style="margin-top: 45px; margin-bottom: 45px;">Willkommen im Bistro</h1>
-			</div>
-			<div class=row>
-				<div>
-					<div class=panel-heading style="text-align:center; padding-bottom: 0px;">
-						<p style="font-size:21px; margin-bottom:0;">Tagesangebot</p>
-						<p>{{vm.promotionMenus.offerDate | amDateFormat:'D. MMMM YYYY'}}</p>
-					</div>
-					<div class=panel-body style=text-align:center; ng-show="vm.promotionMenus && !vm.promotionMenus.dailyMenu && !vm.promotionMenus.vegiMenu">
-						<h5>Lieber Kunde, zurzeit sind keine Menus im Angebot :(</h5>
-					</div>
-					<div class=panel-body>
-						<div class=col-md-6>
-							<div class="panel panel-default menu-meat" ng-show=vm.promotionMenus.dailyMenu>
-								<div class=panel-body>
-									<p>Tagesmenu</p>
-									<h3>{{vm.promotionMenus.dailyMenu.title}}</h3>
-									<h5>{{vm.promotionMenus.dailyMenu.description}}</h5>
-									<br>
-									<p>Herkunft Fleisch: {{vm.promotionMenus.dailyMenu.origin}}</p>
-									<br>
-									<p style="position: absolute; bottom: 0;">{{vm.promotionMenus.dailyMenu.price | currency: "CHF ": 2}}</p>
+	<div class=row>
+		<div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10">
+			<div class=padding-md>
+				<div class=row>
+					<a href="https://christiankohler.github.io/pwa-ctd16/" class=hidden-xs style="position: absolute; right: 35px;">
+						<img src=img/logo.png style="margin: 15px;">
+					</a>
+					<h1 align=center style="margin-top: 45px; margin-bottom: 45px;">Willkommen im Bistro</h1>
+				</div>
+				<div class=row>
+					<div>
+						<div class=panel-heading style="text-align:center; padding-bottom: 0px;">
+							<p style="font-size:21px; margin-bottom:0;">Tagesangebot</p>
+							<p>{{vm.promotionMenus.offerDate | amDateFormat:'D. MMMM YYYY'}}</p>
+						</div>
+						<div class=panel-body style=text-align:center; ng-show="vm.promotionMenus && !vm.promotionMenus.dailyMenu && !vm.promotionMenus.vegiMenu">
+							<h5>Lieber Kunde, zurzeit sind keine Menus im Angebot :(</h5>
+						</div>
+						<div class=panel-body>
+							<div class=col-md-6>
+								<div class="panel panel-default menu-meat" ng-show=vm.promotionMenus.dailyMenu>
+									<div class=panel-body>
+										<p>Tagesmenu</p>
+										<h3>{{vm.promotionMenus.dailyMenu.title}}</h3>
+										<h5>{{vm.promotionMenus.dailyMenu.description}}</h5>
+										<br>
+										<p>Herkunft Fleisch: {{vm.promotionMenus.dailyMenu.origin}}</p>
+										<br>
+										<p style="position: absolute; bottom: 0;">{{vm.promotionMenus.dailyMenu.price | currency: "CHF ": 2}}</p>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class=col-md-6>
-							<div class="panel panel-default menu-vegi" ng-show=vm.promotionMenus.vegiMenu>
-								<div class=panel-body>
-									<p>Vegetarisch</p>
-									<h3>{{vm.promotionMenus.vegiMenu.title}}</h3>
-									<h5>{{vm.promotionMenus.vegiMenu.description}}</h5>
-									<br>
-									<p style="position: absolute; bottom: 0;">{{vm.promotionMenus.vegiMenu.price | currency: "CHF ": 2}}</p>
+							<div class=col-md-6>
+								<div class="panel panel-default menu-vegi" ng-show=vm.promotionMenus.vegiMenu>
+									<div class=panel-body>
+										<p>Vegetarisch</p>
+										<h3>{{vm.promotionMenus.vegiMenu.title}}</h3>
+										<h5>{{vm.promotionMenus.vegiMenu.description}}</h5>
+										<br>
+										<p style="position: absolute; bottom: 0;">{{vm.promotionMenus.vegiMenu.price | currency: "CHF ": 2}}</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class=row>
-				<div>
-					<div class=panel-heading style="text-align:center; padding-bottom: 0px;">
-						<p style=font-size:21px;>Zu den Bestellungen</p>
-					</div>
-					<div class=panel-body style="padding-left: 30px; padding-right: 30px">
-						<div class=row>
-							<div class=col-lg-12>
-								<button class="btn btn-primary btn-block" ng-click=vm.login()>Login</button>
+				<div class=row>
+					<div>
+						<div class=panel-heading style="text-align:center; padding-bottom: 0px;">
+							<p style=font-size:21px;>Zu den Bestellungen</p>
+						</div>
+						<div class=panel-body style="padding-left: 30px; padding-right: 30px">
+							<div class=row>
+								<div class=col-lg-12>
+									<button class="btn btn-primary btn-block" ng-click=vm.login()>Login</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -78,7 +93,6 @@
 			</div>
 		</div>
 	</div>
-  </div>
   
 </body>
 </html>
