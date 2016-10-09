@@ -10,14 +10,12 @@
 	<link rel="stylesheet" href="styles/bootstrap.css">
 	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="styles/vendor.css">
-	<link rel="manifest" href="/manifest.json"/>
 	
-	<link rel="icon" href="img/favicon.png">
-</head>
-
-<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 	<script src="lib/jquery.js"></script>
 	<script src="lib/bootstrap.js"></script>
+	<script src="main.js"></script>
+	
 	<script type="application/javascript">
 		if ('serviceWorker' in navigator) {
 			navigator.serviceWorker.register('service-worker.js', {
@@ -29,6 +27,11 @@
 			});
 		}
 	</script>
+	<link rel="manifest" href="/manifest.json"/>
+	<link rel="icon" href="img/favicon.png">
+</head>
+
+<body ng-app="bistroApp" ng-controller="LandingPageCtrl as vm">
   
 	<div class=row>
 		<div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10">
@@ -43,7 +46,7 @@
 					<div>
 						<div class=panel-heading style="text-align:center; padding-bottom: 0px;">
 							<p style="font-size:21px; margin-bottom:0;">Tagesangebot</p>
-							<p>{{vm.promotionMenus.offerDate | amDateFormat:'D. MMMM YYYY'}}</p>
+							<p>{{vm.promotionMenus.offerDate | date:'D. MMMM YYYY'}}</p>
 						</div>
 						<div class=panel-body style=text-align:center; ng-show="vm.promotionMenus && !vm.promotionMenus.dailyMenu && !vm.promotionMenus.vegiMenu">
 							<h5>Lieber Kunde, zurzeit sind keine Menus im Angebot :(</h5>
