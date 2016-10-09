@@ -1,16 +1,11 @@
-var version = 'v5';
+var version = 'v10';
 var cacheWhitelist = ['static-'+version];
 
 self.addEventListener('fetch', function(event) {
     console.log('Fetching for version '+version+'... ');
     console.log(event.request);
-    // Mess with particular requests
-    if (/\.jpg$/.test(event.request.url)) {
-        event.respondWith(fetch('trollface.svg'));
-        return;
-    }
+	
     event.respondWith(
-        new Response('This came from the service worker!')
         caches.match(event.request).then(function(response) {
             if (response) {
                 console.log('Fetched: Found in cache '+event.request.url);
@@ -19,11 +14,11 @@ self.addEventListener('fetch', function(event) {
                 console.log('Fetching: Unable to find in cache '+event.request.url);
                 return fetch(event.request);
             }
-            //return response || event.default();
+            return response || event.default();
         }).catch(function(e) {
             console.error(e);
-            console.log('Fetching: Request failed, using fallback '+event.request);
-            return caches.match('/fallback.html');
+            console.log('Fetching: Request failed');
+			return event.default();
         })
     );
 });
@@ -32,11 +27,23 @@ self.addEventListener('install', function(event) {
     console.log('Installing version '+version+' ...');
     event.waitUntil(
         caches.open('static-'+version).then(function(cache) {
+            cache.addAll([
+				new Request('https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js', {mode: 'no-cors'})
+			]).then(function() { //Non-CORS fail by default
+				console.log('All non-cors resources have been fetched and cached.');
+			}).catch(function(e) {
+				console.log('All non-cors resources have been fetched and cached. Expected failure when loading non-CORS URLs');
+			})
             return cache.addAll([
                 '/',
-                '/another-page.html',
-                '/fallback.html',
-                //new Request('//mycdn.com/script.js', {mode: 'no-cors'})
+                '/main.js',
+                '/styles/bootstrap.css',
+                '/styles/vendor.css',
+                '/styles/main.css',
+                '/styles/specific.css',
+                '/lib/jquery.js',
+                '/lib/bootstrap.js',
+                '/img/logo.png'
             ]);
         })
     );
@@ -56,5 +63,5 @@ self.addEventListener('activate', function(event) {
                 })
             )
         })
-    );
+    )
 });
