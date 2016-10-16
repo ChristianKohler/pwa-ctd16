@@ -50,16 +50,19 @@ self.addEventListener('install', function(event) {
 self.addEventListener('activate', function(event) {
     console.log('Activating version '+version+' ...');
     event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            console.log('Activating: Available caches '+cacheNames);
-            return Promise.all(
-                cacheNames.map(function(cacheName) {
-                    if (cacheWhitelist.indexOf(cacheName) == -1) {
-                        console.log('Activating: Deleting cache '+cacheName);
-                        return caches.delete(cacheName);
-                    }
-                })
-            )
-        })
+		Promise.all([
+			self.clients.claim(),
+			caches.keys().then(function(cacheNames) {
+				console.log('Activating: Available caches '+cacheNames);
+				return Promise.all(
+					cacheNames.map(function(cacheName) {
+						if (cacheWhitelist.indexOf(cacheName) == -1) {
+							console.log('Activating: Deleting cache '+cacheName);
+							return caches.delete(cacheName);
+						}
+					})
+				)
+			})
+		])
     )
 });
