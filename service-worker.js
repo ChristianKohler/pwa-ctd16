@@ -35,12 +35,8 @@ self.addEventListener('install', function(event) {
             return cache.addAll([
                 '/pwa-ctd16/',
                 '/pwa-ctd16/main.js',
-                '/pwa-ctd16/styles/bootstrap.css',
-                '/pwa-ctd16/styles/vendor.css',
-                '/pwa-ctd16/styles/main.css',
-                '/pwa-ctd16/styles/specific.css',
-                '/pwa-ctd16/lib/jquery.js',
-                '/pwa-ctd16/lib/bootstrap.js',
+                '/pwa-ctd16/assets/styles.css',
+                '/pwa-ctd16/assets/vendors.js',
                 '/pwa-ctd16/img/logo.png'
             ]);
         })

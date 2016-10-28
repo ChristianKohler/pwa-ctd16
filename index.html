@@ -8,15 +8,14 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
     <meta name='mobile-web-app-capable' content='yes'>
     <link rel="icon" sizes="144x144" href="img/icon-144x144.png">
+	<link rel="icon" href="img/favicon.png">
 
-	<link rel="stylesheet" href="styles/bootstrap.css">
-	<link rel="stylesheet" href="styles/vendor.css">
-	<link rel="stylesheet" href="styles/main.css">
-	<link rel="stylesheet" href="styles/specific.css">
+	<link rel="stylesheet" href="assets/styles.css">
+
+	<link rel="manifest" href="manifest.json"/>
 	
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-	<script src="lib/jquery.js"></script>
-	<script src="lib/bootstrap.js"></script>
+	<script src="assets/vendors.js"></script>
 	<script src="main.js"></script>
 	
 	<script type="application/javascript">
@@ -30,8 +29,6 @@
 			});
 		}
 	</script>
-	<link rel="manifest" href="manifest.json"/>
-	<link rel="icon" href="img/favicon.png">
 </head>
 
 <body ng-app="bistroApp" ng-controller="LandingPageCtrl as vm">
