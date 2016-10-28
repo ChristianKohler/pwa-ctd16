@@ -1,0 +1,17 @@
+﻿{
+	"offerDate":"2016-10-10T00:00:00",
+	"dailyMenu":{
+		"title":"Ofen-Fleischkäse",
+		"description":"Senfsauce Spiralnudeln Bohnen-getrocknete Tomaten",
+		"origin":"CH",
+		"price":13.50,
+		"id":0,
+		"creationDate":0,
+		"modificationDate":0
+	},
+	"vegiMenu":{
+		"title":"Maispuffer",
+		"description":"Avocadosalsa Bohnen-getrocknete Tomaten Blattsalat",
+		"price":12.50
+	}
+}
