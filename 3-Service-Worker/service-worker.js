@@ -33,11 +33,11 @@ self.addEventListener('install', function(event) {
 				console.log('All non-cors resources have been fetched and cached. Expected failure when loading non-CORS URLs');
 			})
             return cache.addAll([
-                '/pwa-ctd16/',
-                '/pwa-ctd16/main.js',
-                '/pwa-ctd16/assets/styles.css',
-                '/pwa-ctd16/assets/vendors.js',
-                '/pwa-ctd16/img/logo.png'
+                '/pwa-ctd16/3-service-worker/',
+                '/pwa-ctd16/3-service-worker/main.js',
+                '/pwa-ctd16/3-service-worker/assets/styles.css',
+                '/pwa-ctd16/3-service-worker/assets/vendors.js',
+                '/pwa-ctd16/3-service-worker/img/logo.png'
             ]);
         })
     );

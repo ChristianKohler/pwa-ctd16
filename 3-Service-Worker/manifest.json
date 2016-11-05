@@ -5,7 +5,7 @@
   "background_color": "#f9f9f9",
   "display": "standalone",
   "Scope": "/",
-  "start_url": "/pwa-ctd16/1-initial/",
+  "start_url": "/pwa-ctd16/3-service-worker/",
   "icons": [
     {
       "src": "img/icons/icon-72x72.png",
