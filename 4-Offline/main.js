@@ -5,9 +5,9 @@ function LandingPageCtrl($http) {
 	vm.refresh = initialize;
 	
 	function initialize() {
-		if (!navigator.onLine) {
-			vm.offline = true;
-		} else {
+if (!navigator.onLine) {
+	vm.offline = true;
+} else {
 			vm.offline = false;
 			$http.get('./menu.json').then(function(response) {
 				vm.promotionMenus = response.data;

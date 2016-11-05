@@ -51,7 +51,10 @@
 					</div>
 					<div class=panel-body style=text-align:center; ng-show="vm.offline">
 						<h5>Leider konnte die aktuellen Menus nicht geladen werden.</h5>
-						<a href="#" ng-click="vm.refresh()">Erneut laden</a>
+						<button class="btn btn-primary btn-block" ng-click=vm.login()>
+							<i class="glyphicon glyphicon-refresh"></i>
+							Erneut laden
+						</button>
 					</div>
 					<div ng-show="vm.promotionMenus">
 						<div class=panel-heading style="text-align:center; padding-bottom: 0px;">
@@ -89,7 +92,7 @@
 						</div>
 					</div>
 				</div>
-				<div class=row>
+				<div class=row ng-show="!vm.offline">
 					<div>
 						<div class=panel-heading style="text-align:center; padding-bottom: 0px;">
 							<p style=font-size:21px;>Zu den Bestellungen</p>
