@@ -36,7 +36,12 @@ function LandingPageCtrl($http) {
 		navigator.serviceWorker.ready.then(function(registration) {
 		  registration.showNotification('It is Zühlke day!', {
 				body: 'The daily menus are online for the next Zühlke day. Order now your lunch!',
-				icon: 'img/logo.png'
+				icon: 'img/logo.png',
+				vibrate: [200, 100, 200, 100, 200, 100, 200],
+				actions: [{
+					action: 'order',
+					title: 'Bestellen'
+				}]
 			});
 		});
 	}

@@ -62,3 +62,10 @@ self.addEventListener('activate', function(event) {
 		])
     )
 });
+self.addEventListener('notificationclick', function(event) {
+	event.notification.close();
+
+	if (event.action === 'order') {  
+		clients.openWindow('/');  
+	}
+}, false);
