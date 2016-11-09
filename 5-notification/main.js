@@ -22,20 +22,22 @@ function LandingPageCtrl($http) {
 		if (!('Notification' in window)) {
 			alert('This browser does not support desktop notification');
 		} else if (Notification.permission === 'granted') {
-			var notification = createNotification();
+			showNotification();
 		} else if (Notification.permission !== 'denied') {
 			Notification.requestPermission(function (permission) {
 				if (permission === 'granted') {
-					var notification = createNotification();
+					showNotification();
 				}
 			});
 		}
 	}
 	
-	function createNotification() {
-		return new Notification('It is Zühlke day!', {
-			body: 'The daily menus are online for the next Zühlke day. Order now your lunch!',
-			icon: 'img/logo.png'
+	function showNotification() {
+		navigator.serviceWorker.ready.then(function(registration) {
+		  registration.showNotification('It is Zühlke day!', {
+				body: 'The daily menus are online for the next Zühlke day. Order now your lunch!',
+				icon: 'img/logo.png'
+			});
 		});
 	}
 }
