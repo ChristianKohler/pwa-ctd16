@@ -65,7 +65,5 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('notificationclick', function(event) {
 	event.notification.close();
 
-	if (event.action === 'order') {  
-		clients.openWindow('/');  
-	}
+	clients.openWindow('/pwa-ctd16/5-notification/');
 }, false);
