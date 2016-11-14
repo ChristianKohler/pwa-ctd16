@@ -1,7 +1,7 @@
 function LandingPageCtrl($http) {
 	var vm = this;
 	
-	$http.get('./menu.json').then(function(response) {
+	$http.get('./menu.json?cachebuster' + Math.random()).then(function(response) {
 		vm.promotionMenus = response.data;
 	});
 }

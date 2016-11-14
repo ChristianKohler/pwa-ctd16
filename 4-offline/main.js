@@ -9,7 +9,7 @@ if (!navigator.onLine) {
 	vm.offline = true;
 } else {
 			vm.offline = false;
-			$http.get('./menu.json').then(function(response) {
+			$http.get('./menu.json?cachebuster' + Math.random()).then(function(response) {
 				vm.promotionMenus = response.data;
 			}, function (error) {
 				vm.errorMessage = 'Lieber Kunde, zurzeit sind keine Menus im Angebot :(';
